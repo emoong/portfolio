@@ -1,6 +1,7 @@
 import { DockIconParam, Position } from "components/type/entity/dock";
 import { useState } from "react"
 import styled from "styled-components";
+import { convertDockIconSize } from '../../../utils/icon';
 
 export default function DockIcon({ image, name, position }: DockIconParam) {
   const [isSelected, setIsSelected] = useState<boolean>(true);
@@ -14,12 +15,14 @@ export default function DockIcon({ image, name, position }: DockIconParam) {
     setIsHover(false);
   }
 
+  const iconSize = convertDockIconSize(name);
+
   return (
     <Container onMouseOver={onMouse} onMouseOut={outMoust}>
       <SelectedBox>
         {isSelected ? '*' : null}
       </SelectedBox>
-      <IconImage src={image} alt={name} />
+      <IconImage src={image} alt={name} iconSize={iconSize} />
       {isHover ? (
         <HoverBox position={position}>
           {name}
@@ -36,6 +39,8 @@ const Container = styled.div`
   display: flex;
   padding: 5px 10px 5px 12px;
   border: 1px solid black;
+  justify-content: center;
+  align-items: center;
 `
 
 const SelectedBox = styled.div`
@@ -47,8 +52,8 @@ const SelectedBox = styled.div`
 
 const IconImage = styled.img`
   display: block;
-  width: 50px;
-  height: 50px;
+  width: ${({ iconSize }: { iconSize: number[] }) => iconSize[0]}px;
+  height: ${({ iconSize }: { iconSize: number[] }) => iconSize[1]}px;
 `
 
 const HoverBox = styled.div`

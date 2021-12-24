@@ -1,4 +1,5 @@
 import { Position } from "components/type/entity/dock";
+import { IconParam } from "components/type/entity/icon";
 
 // styled-components
 import styled from "styled-components";
@@ -10,7 +11,8 @@ import Iterm from "assets/iterm.png";
 import Notes from "assets/notes.png";
 import Postman from "assets/postman.png";
 import Vscode from "assets/vscode.png";
-import { IconParam } from "components/type/entity/icon";
+import Trash from "assets/trash.png";
+
 
 export default function Dock({ position }: { position: Position }) {
 
@@ -34,6 +36,10 @@ export default function Dock({ position }: { position: Position }) {
     {
       image: Vscode,
       name: "Vscode",
+    },
+    {
+      image: Trash,
+      name: "Trash",
     },
   ]
 
