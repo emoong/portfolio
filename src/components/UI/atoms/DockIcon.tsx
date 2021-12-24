@@ -38,7 +38,6 @@ const Container = styled.div`
   position: relative;
   display: flex;
   padding: 5px 10px 5px 12px;
-  border: 1px solid black;
   justify-content: center;
   align-items: center;
 `

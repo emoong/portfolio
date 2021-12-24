@@ -59,9 +59,9 @@ const Container = styled.div`
   right: ${({ position }: { position: Position }) => position === 1 ? "10px" : null};
   bottom: ${({ position }: { position: Position }) => position === 2 ? "10px" : null};
   transform: ${({ position }: { position: Position }) => position < 2 ? "translate(0,-50%)" : "translate(-50%,0)"};
-  border:1px solid black;
   border-radius: 10px;
   margin: auto;
   display: flex;
   flex-direction: ${({ position }: { position: Position }) => position < 2 ? 'column' : 'row'};
+  background-color: rgba(255,255,255,0.5);
 `;
