@@ -1,0 +1,1 @@
+export * as dockDispatcher from "./dock";

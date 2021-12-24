@@ -1,4 +1,4 @@
-import { Position } from "components/type/entity/dock";
+import { DockFileTypes, Position } from "components/type/entity/dock";
 import { IconParam } from "components/type/entity/icon";
 
 // styled-components
@@ -19,27 +19,27 @@ export default function Dock({ position }: { position: Position }) {
   const icons: IconParam[] = [
     {
       image: Finder,
-      name: "Finder",
+      name: DockFileTypes.FINDER,
     },
     {
       image: Iterm,
-      name: "Iterm",
+      name: DockFileTypes.ITERM,
     },
     {
       image: Notes,
-      name: "Notes",
+      name: DockFileTypes.NOTES,
     },
     {
       image: Postman,
-      name: "Postman",
+      name: DockFileTypes.POSTMAN,
     },
     {
       image: Vscode,
-      name: "Vscode",
+      name: DockFileTypes.VSCODE,
     },
     {
       image: Trash,
-      name: "Trash",
+      name: DockFileTypes.TRASH,
     },
   ]
 
