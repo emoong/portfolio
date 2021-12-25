@@ -1,2 +1,3 @@
-export * as dispatches from "./dispatches";
-export * from "./stores"
+export * as actionCreators from "./action-creators";
+export * from "./stores";
+export * from "./reducers";

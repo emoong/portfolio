@@ -16,10 +16,12 @@ export enum DockFileTypes {
 }
 
 export interface DockIconParam extends IconParam {
+  name: DockFileTypes;
   position: Position;
 }
 
 export interface DockFile extends IconParam {
+  name: DockFileTypes;
   open: boolean;
   zIndex: number;
 }

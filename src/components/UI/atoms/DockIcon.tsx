@@ -1,11 +1,18 @@
-import { DockIconParam, Position } from "components/type/entity/dock";
-import { useState } from "react"
+import { DockFileTypes, DockIconParam, Position } from "components/type/entity/dock";
+import { actionCreators, State } from "modules";
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
 import styled from "styled-components";
 import { convertDockIconSize } from '../../../utils/icon';
 
 export default function DockIcon({ image, name, position }: DockIconParam) {
-  const [isSelected, setIsSelected] = useState<boolean>(true);
+  const [isOpened, setIsOpened] = useState<boolean>(false);
   const [isHover, setIsHover] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
+  const { openFile, closeFile, popFile } = bindActionCreators(actionCreators, dispatch);
+  const state = useSelector((state: State) => state.dock)
 
   const onMouse = () => {
     setIsHover(true);
@@ -15,12 +22,22 @@ export default function DockIcon({ image, name, position }: DockIconParam) {
     setIsHover(false);
   }
 
+  const onClickDockIcon = () => {
+    openFile(name);
+    popFile(name);
+  }
+
+  useEffect(() => {
+    const thisState = state.filter(docFile => docFile.name === name)[0];
+    setIsOpened(thisState.open);
+  }, [state])
+
   const iconSize = convertDockIconSize(name);
 
   return (
-    <Container onMouseOver={onMouse} onMouseOut={outMoust}>
+    <Container onMouseOver={onMouse} onMouseOut={outMoust} onClick={onClickDockIcon} >
       <SelectedBox>
-        {isSelected ? '*' : null}
+        {isOpened ? '*' : null}
       </SelectedBox>
       <IconImage src={image} alt={name} iconSize={iconSize} />
       {isHover ? (
