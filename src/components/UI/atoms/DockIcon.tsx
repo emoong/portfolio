@@ -1,4 +1,4 @@
-import { DockFileTypes, DockIconParam, Position } from "components/type/entity/dock";
+import { DockFileNames, DockIconParam, Position } from "components/type/entity/dock";
 import { actionCreators, State } from "modules";
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
@@ -28,12 +28,12 @@ export default function DockIcon({ image, name, position }: DockIconParam) {
   }
 
   useEffect(() => {
-    const thisState = state.filter(docFile => docFile.name === name)[0];
+    const thisState = state.files[name];
     setIsOpened(thisState.open);
-  }, [state])
+  }, [state.files[name].open])
 
   const iconSize = convertDockIconSize(name);
-
+  // console.log(state.files[name].name, state.files[name].open)
   return (
     <Container onMouseOver={onMouse} onMouseOut={outMoust} onClick={onClickDockIcon} >
       <SelectedBox>

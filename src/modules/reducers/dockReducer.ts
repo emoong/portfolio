@@ -1,34 +1,44 @@
 import Actions from "modules/actions/dock";
 import { DockFileActionType } from "modules/constants";
-import { initialState } from '../stores/dock';
-
-let zIndex = 0;
+import { initialState } from './initialState';
 
 const reducer = (state = initialState, action: Actions) => {
   switch (action.type) {
     case DockFileActionType.OPEN_FILE: {
-      return state.map(dockFile => {
-        if (dockFile.name === action.payload) {
-          return { ...dockFile, open: true, zIndex: zIndex++ };
-        }
-        return dockFile;
-      })
+      return {
+        files: {
+          ...state.files,
+          [action.payload]: {
+            ...state.files[action.payload],
+            open: true,
+          },
+        },
+        zIndex: state.zIndex,
+      }
     }
     case DockFileActionType.CLOSE_FILE: {
-      return state.map(dockFile => {
-        if (dockFile.name === action.payload) {
-          return { ...dockFile, open: false };
-        }
-        return dockFile;
-      })
+      return {
+        files: {
+          ...state.files,
+          [action.payload]: {
+            ...state.files[action.payload],
+            open: false,
+          },
+        },
+        zIndex: state.zIndex,
+      }
     }
     case DockFileActionType.POP_FILE: {
-      return state.map(dockFile => {
-        if (dockFile.name === action.payload) {
-          return { ...dockFile, zIndex: zIndex++ };
-        }
-        return dockFile;
-      })
+      return {
+        files: {
+          ...state.files,
+          [action.payload]: {
+            ...state.files[action.payload],
+            zIndex: state.zIndex
+          },
+        },
+        zIndex: state.zIndex + 1,
+      }
     }
     default: {
       return state;

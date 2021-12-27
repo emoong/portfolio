@@ -1,9 +1,9 @@
 import { DockFileActionType } from 'modules/constants';
-import { DockFileTypes } from "components/type/entity/dock";
+import { DockFileNames } from "components/type/entity/dock";
 import { Dispatch } from 'redux';
 import Actions from 'modules/actions/dock';
 
-export const openFile = (name: DockFileTypes) => {
+export const openFile = (name: DockFileNames) => {
   return (dispatch: Dispatch<Actions>) => {
     dispatch({
       type: DockFileActionType.OPEN_FILE,
@@ -12,7 +12,7 @@ export const openFile = (name: DockFileTypes) => {
   }
 }
 
-export const closeFile = (name: DockFileTypes) => {
+export const closeFile = (name: DockFileNames) => {
   return (dispatch: Dispatch<Actions>) => {
     dispatch({
       type: DockFileActionType.CLOSE_FILE,
@@ -21,10 +21,28 @@ export const closeFile = (name: DockFileTypes) => {
   }
 }
 
-export const popFile = (name: DockFileTypes) => {
+export const popFile = (name: DockFileNames) => {
   return (dispatch: Dispatch<Actions>) => {
     dispatch({
       type: DockFileActionType.POP_FILE,
+      payload: name,
+    })
+  }
+}
+
+export const minizieFile = (name: DockFileNames) => {
+  return (dispatch: Dispatch<Actions>) => {
+    dispatch({
+      type: DockFileActionType.MINMIZE_FILE,
+      payload: name,
+    })
+  }
+}
+
+export const maximizeFile = (name: DockFileNames) => {
+  return (dispatch: Dispatch<Actions>) => {
+    dispatch({
+      type: DockFileActionType.MAXIMIZE_FILE,
       payload: name,
     })
   }

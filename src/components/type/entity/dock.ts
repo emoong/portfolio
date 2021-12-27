@@ -6,7 +6,7 @@ export enum Position {
   BOTTOM,
 }
 
-export enum DockFileTypes {
+export enum DockFileNames {
   FINDER = "finder",
   ITERM = "iterm",
   NOTES = "notes",
@@ -15,13 +15,20 @@ export enum DockFileTypes {
   TRASH = "trash",
 }
 
+export enum WindowSize {
+  MAX = "maximize",
+  MIN = "minimize",
+  NORMAL = "normal",
+}
+
 export interface DockIconParam extends IconParam {
-  name: DockFileTypes;
+  name: DockFileNames;
   position: Position;
 }
 
 export interface DockFile extends IconParam {
-  name: DockFileTypes;
+  name: DockFileNames;
   open: boolean;
   zIndex: number;
+  size: WindowSize;
 }
