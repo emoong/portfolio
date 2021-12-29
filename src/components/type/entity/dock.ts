@@ -1,3 +1,4 @@
+import { Component, ReactComponentElement } from "react";
 import { IconParam } from "./icon";
 
 export enum Position {
@@ -15,12 +16,6 @@ export enum DockFileNames {
   TRASH = "trash",
 }
 
-export enum WindowSize {
-  MAX = "maximize",
-  MIN = "minimize",
-  NORMAL = "normal",
-}
-
 export interface DockIconParam extends IconParam {
   name: DockFileNames;
   position: Position;
@@ -29,6 +24,5 @@ export interface DockIconParam extends IconParam {
 export interface DockFile extends IconParam {
   name: DockFileNames;
   open: boolean;
-  zIndex: number;
-  size: WindowSize;
+  uid: string[],
 }

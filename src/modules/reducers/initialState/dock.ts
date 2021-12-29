@@ -1,4 +1,4 @@
-import { DockFile, DockFileNames, WindowSize } from "components/type/entity/dock";
+import { DockFile, DockFileNames } from "components/type/entity/dock";
 
 // assets
 import Finder from "assets/finder.png";
@@ -8,50 +8,43 @@ import Postman from "assets/postman.png";
 import Vscode from "assets/vscode.png";
 import Trash from "assets/trash.png";
 
-export const initialState: { files: { [key in DockFileNames]: DockFile }, zIndex: number } = {
+export const initialState: { files: { [key in DockFileNames]: DockFile } } = {
   files: {
     [DockFileNames.FINDER]: {
       image: Finder,
       name: DockFileNames.FINDER,
       open: false,
-      zIndex: -1,
-      size: WindowSize.NORMAL,
+      uid: [],
     },
     [DockFileNames.ITERM]: {
       image: Iterm,
       name: DockFileNames.ITERM,
       open: false,
-      zIndex: -1,
-      size: WindowSize.NORMAL,
+      uid: [],
     },
     [DockFileNames.NOTES]: {
       image: Notes,
       name: DockFileNames.NOTES,
       open: false,
-      zIndex: -1,
-      size: WindowSize.NORMAL,
+      uid: [],
     },
     [DockFileNames.POSTMAN]: {
       image: Postman,
       name: DockFileNames.POSTMAN,
       open: false,
-      zIndex: -1,
-      size: WindowSize.NORMAL,
+      uid: [],
     },
     [DockFileNames.VSCODE]: {
       image: Vscode,
       name: DockFileNames.VSCODE,
       open: false,
-      zIndex: -1,
-      size: WindowSize.NORMAL,
+      uid: [],
     },
     [DockFileNames.TRASH]: {
       image: Trash,
       name: DockFileNames.TRASH,
       open: false,
-      zIndex: -1,
-      size: WindowSize.NORMAL,
+      uid: [],
     },
   },
-  zIndex: 0
 }

@@ -11,7 +11,7 @@ export default function DockIcon({ image, name, position }: DockIconParam) {
   const [isHover, setIsHover] = useState<boolean>(false);
 
   const dispatch = useDispatch();
-  const { openFile, closeFile, popFile } = bindActionCreators(actionCreators, dispatch);
+  const { openFile, closeFile, popFile, openDockFile, closeDockFile } = bindActionCreators(actionCreators, dispatch);
   const state = useSelector((state: State) => state.dock)
 
   const onMouse = () => {
@@ -23,8 +23,10 @@ export default function DockIcon({ image, name, position }: DockIconParam) {
   }
 
   const onClickDockIcon = () => {
-    openFile(name);
-    popFile(name);
+    const uid = Math.random() + "";
+    openFile({ uid, name });
+    popFile({ uid });
+    openDockFile({ uid, name });
   }
 
   useEffect(() => {

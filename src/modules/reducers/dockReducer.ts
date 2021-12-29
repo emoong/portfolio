@@ -1,6 +1,6 @@
 import Actions from "modules/actions/dock";
 import { DockFileActionType } from "modules/constants";
-import { initialState } from './initialState';
+import { initialState } from './initialState/dock';
 
 const reducer = (state = initialState, action: Actions) => {
   switch (action.type) {
@@ -8,36 +8,25 @@ const reducer = (state = initialState, action: Actions) => {
       return {
         files: {
           ...state.files,
-          [action.payload]: {
-            ...state.files[action.payload],
+          [action.payload.name]: {
+            ...state.files[action.payload.name],
             open: true,
+            uid: [...state.files[action.payload.name].uid, action.payload.uid],
           },
         },
-        zIndex: state.zIndex,
       }
     }
     case DockFileActionType.CLOSE_FILE: {
+      const uidArr = [...state.files[action.payload.name].uid].filter(_uid => _uid !== action.payload.uid);
       return {
         files: {
           ...state.files,
-          [action.payload]: {
-            ...state.files[action.payload],
-            open: false,
+          [action.payload.name]: {
+            ...state.files[action.payload.name],
+            open: uidArr.length > 0 ? true : false,
+            uid: uidArr
           },
         },
-        zIndex: state.zIndex,
-      }
-    }
-    case DockFileActionType.POP_FILE: {
-      return {
-        files: {
-          ...state.files,
-          [action.payload]: {
-            ...state.files[action.payload],
-            zIndex: state.zIndex
-          },
-        },
-        zIndex: state.zIndex + 1,
       }
     }
     default: {

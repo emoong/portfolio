@@ -1,9 +1,10 @@
-import WallPaper from "components/pages/WallPaper";
+import MacDisplay from "components/template/MacDisplay";
+
 
 function App() {
   return (
     <div>
-      <WallPaper />
+      <MacDisplay />
     </div>
   );
 }
