@@ -1,6 +1,6 @@
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 
-import MacDisplay from "components/template/MacDisplay";
+import MacDisplay from "components/pages/MacDisplay";
 import ExitFullScreenBtn from 'components/UI/atoms/ExitFullScreenBtn';
 import FullScreenBtn from 'components/UI/atoms/FullScreenBtn';
 
