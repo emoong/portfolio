@@ -1,6 +1,8 @@
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 
 import MacDisplay from "components/template/MacDisplay";
+import ExitFullScreenBtn from 'components/UI/atoms/ExitFullScreenBtn';
+import FullScreenBtn from 'components/UI/atoms/FullScreenBtn';
 
 function App() {
 
@@ -16,14 +18,8 @@ function App() {
 
   return (
     <div>
-      <div id="login">
-        <button onClick={onFullScreen}>
-          full screen button
-        </button>
-        <button onClick={onExitFullScreen}>
-          exit full screen button
-        </button>
-      </div>
+      <FullScreenBtn onFullScreen={onFullScreen} />
+      <ExitFullScreenBtn onExitFullScreen={onExitFullScreen} />
       <FullScreen handle={handle}>
         <MacDisplay />
       </FullScreen>
