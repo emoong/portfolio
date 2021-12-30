@@ -1,58 +1,21 @@
-import { DockFileNames, DockIconParam, Position } from "components/type/entity/dock";
-import { IconParam } from "components/type/entity/icon";
+import { Position } from "components/type/entity/dock";
 
 // styled-components
 import styled from "styled-components";
 import DockIcon from "../atoms/DockIcon";
 
-// assets
-import Finder from "assets/finder.png";
-import Iterm from "assets/iterm.png";
-import Notes from "assets/notes.png";
-import Postman from "assets/postman.png";
-import Vscode from "assets/vscode.png";
-import Trash from "assets/trash.png";
+import { useSelector } from "react-redux";
+import { State } from "modules";
 
 
 export default function Dock({ position }: { position: Position }) {
 
-  const icons: DockIconParam[] = [
-    {
-      image: Finder,
-      name: DockFileNames.FINDER,
-      position,
-    },
-    {
-      image: Iterm,
-      name: DockFileNames.ITERM,
-      position,
-    },
-    {
-      image: Notes,
-      name: DockFileNames.NOTES,
-      position,
-    },
-    {
-      image: Postman,
-      name: DockFileNames.POSTMAN,
-      position,
-    },
-    {
-      image: Vscode,
-      name: DockFileNames.VSCODE,
-      position,
-    },
-    {
-      image: Trash,
-      name: DockFileNames.TRASH,
-      position,
-    },
-  ]
+  const { files } = useSelector((state: State) => state.dock);
 
   return (
     <Container position={position} >
-      {icons.map((icon, index) => (
-        <DockIcon {...icon} position={position} key={index} />
+      {Object.values(files).map((file, index) => (
+        <DockIcon {...file} position={position} key={index} />
       ))}
     </Container>
   )
