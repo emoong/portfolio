@@ -1,3 +1,4 @@
+import React from "react";
 import { DockFileNames } from "./dock";
 
 export type corrdinates = [number, number];
@@ -18,6 +19,5 @@ export enum WindowSize {
 export interface FileWindow {
   name: DockFileNames;
   uid: string;
-  size: WindowSize;
-  coordinates: corrdinates;
+  component: JSX.Element | null;
 }

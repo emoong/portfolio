@@ -17,38 +17,6 @@ interface CloseFileAction {
   },
 }
 
-interface PopFileAction {
-  type: DockFileActionType.POP_FILE,
-  payload: {
-    name: DockFileNames,
-    uid: string,
-  },
-}
-
-interface MinimizeFileAction {
-  type: DockFileActionType.MINMIZE_FILE,
-  payload: {
-    name: DockFileNames,
-    uid: string,
-  },
-}
-
-interface MaximzieFileAction {
-  type: DockFileActionType.MAXIMIZE_FILE,
-  payload: {
-    name: DockFileNames,
-    uid: string,
-  },
-}
-
-interface ExitMaximzieFileAction {
-  type: DockFileActionType.EXIT_MAXIMIZE_FILE,
-  payload: {
-    name: DockFileNames,
-    uid: string,
-  },
-}
-
-type Actions = OpenFileAction | CloseFileAction | PopFileAction | MinimizeFileAction | MaximzieFileAction | ExitMaximzieFileAction;
+type Actions = OpenFileAction | CloseFileAction;
 
 export default Actions;

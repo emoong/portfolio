@@ -3,6 +3,17 @@ import Actions from "modules/actions/files";
 import { FilesActionType } from "modules/constants";
 import { initialState } from "./initialState/file";
 
+// components
+import Dock from 'components/UI/organisms/Dock';
+import Finder from 'components/UI/organisms/Finder';
+import Iterm from 'components/UI/organisms/Iterm';
+import Notes from 'components/UI/organisms/Notes';
+import Postman from 'components/UI/organisms/Postman';
+import Trash from 'components/UI/organisms/Trash';
+import Vscode from 'components/UI/organisms/Vscode';
+
+import { DockFileNames } from "components/type/entity/dock";
+
 const reducer = (state = initialState, action: Actions): { files: FileWindow[] } => {
   switch (action.type) {
     case FilesActionType.OPEN_FILE: {
@@ -11,15 +22,13 @@ const reducer = (state = initialState, action: Actions): { files: FileWindow[] }
           {
             name: action.payload.name,
             uid: action.payload.uid,
-            size: WindowSize.NORMAL,
-            coordinates: [50, 50],
+            component: fileRouter({ name: action.payload.name, uid: action.payload.uid })
           },
           ...state.files,
         ]
       }
     }
     case FilesActionType.CLOSE_FILE: {
-      console.log(state)
       return {
         files: [...state.files].filter(file => file.uid !== action.payload.uid)
       }
@@ -28,7 +37,7 @@ const reducer = (state = initialState, action: Actions): { files: FileWindow[] }
       const selectedFile = [...state.files].find((file) => file.uid === action.payload.uid);
       const restFiles = [...state.files].filter((file) => file.uid !== action.payload.uid);
       return {
-        files: selectedFile ? [selectedFile, ...restFiles] : restFiles
+        files: selectedFile ? [...restFiles, selectedFile] : restFiles
       }
     }
     case FilesActionType.MINMIZE_FILE: {
@@ -80,3 +89,29 @@ const reducer = (state = initialState, action: Actions): { files: FileWindow[] }
 }
 
 export default reducer;
+
+const fileRouter = ({ name, uid }: { name: DockFileNames, uid: string }) => {
+  switch (name) {
+    case DockFileNames.FINDER: {
+      return <Finder uid={uid} />
+    }
+    case DockFileNames.ITERM: {
+      return <Iterm uid={uid} />
+    }
+    case DockFileNames.NOTES: {
+      return <Notes uid={uid} />
+    }
+    case DockFileNames.POSTMAN: {
+      return <Postman uid={uid} />
+    }
+    case DockFileNames.TRASH: {
+      return <Trash uid={uid} />
+    }
+    case DockFileNames.VSCODE: {
+      return <Vscode uid={uid} />
+    }
+    default: {
+      return null;
+    }
+  }
+}

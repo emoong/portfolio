@@ -83,5 +83,5 @@ const HoverBox = styled.div`
   transform: ${({ position }: { position: Position }) => position < 2 ? "translate(0,-50%)" : "translate(-50%,0)"};
   padding: 15px 25px 15px 25px;
   border-radius: 5px;
-  background-color: #aaaa55;
+  background-color: rgba(255,255,255,0.5);
 `
