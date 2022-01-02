@@ -31,6 +31,10 @@ interface ExitMaximzieFileAction {
   payload: { uid: string },
 }
 
-type Actions = OpenFileAction | CloseFileAction | PopFileAction | MinimizeFileAction | MaximzieFileAction | ExitMaximzieFileAction;
+interface MoveFileAction {
+  type: FilesActionType.MOVE_FILE,
+  payload: { uid: string, x: number, y: number },
+}
+type Actions = OpenFileAction | CloseFileAction | PopFileAction | MinimizeFileAction | MaximzieFileAction | ExitMaximzieFileAction | MoveFileAction;
 
 export default Actions;

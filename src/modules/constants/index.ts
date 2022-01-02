@@ -14,4 +14,5 @@ export enum FilesActionType {
   MINMIZE_FILE = "minimize file",
   MAXIMIZE_FILE = "maximize file",
   EXIT_MAXIMIZE_FILE = "exit maximize file",
+  MOVE_FILE = "move file",
 }

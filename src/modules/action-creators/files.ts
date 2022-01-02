@@ -69,3 +69,16 @@ export const exitMaximizeFile = ({ uid }: { uid: string }) => {
     })
   }
 }
+
+export const moveFile = ({ uid, x, y }: { uid: string, x: number, y: number }) => {
+  return (dispatch: Dispatch<Actions>) => {
+    dispatch({
+      type: FilesActionType.MOVE_FILE,
+      payload: {
+        uid,
+        x,
+        y,
+      }
+    })
+  }
+}

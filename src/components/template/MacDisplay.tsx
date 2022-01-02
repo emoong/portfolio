@@ -5,6 +5,7 @@ import { State } from 'modules';
 import { Fragment, MouseEventHandler } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import Playground from './Playground';
 
 export default function MacDisplay({ onClick }: { onClick: MouseEventHandler }) {
   const { files } = useSelector((state: State) => state.file);
@@ -14,8 +15,8 @@ export default function MacDisplay({ onClick }: { onClick: MouseEventHandler }) 
       {document.fullscreenElement
         ? (
           <>
-            <Background onClick={onClick} />
-            <Playground style={{ backgroundColor: "cadetblue", width: "100vw", height: "100vh" }} id='mac-display' >
+            {/* <Background onClick={onClick} /> */}
+            <Playground>
               <TopBar />
               <Dock position={Position.LEFT} />
               {files.map((file, index) => (
@@ -37,8 +38,4 @@ const Background = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: cadetblue;
-`
-const Playground = styled.div`
-  width: 100vw;
-  height: 100vh;
 `
