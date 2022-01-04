@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import { useDrop } from "react-dnd";
 import { DockFileNames } from 'components/type/entity/dock';
 
+// assets
+import wallPaper from "assets/wallpaper.jpeg";
+
 export default function Playground({ children }: { children: React.ReactNode }) {
   const [{ }, drop] = useDrop(() => ({
     accept: Object.values(DockFileNames),
@@ -24,4 +27,8 @@ export default function Playground({ children }: { children: React.ReactNode }) 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
+  background-image: url(${wallPaper});
+  background-size: contain;
+  background-position: bottom;
+  background-repeat: no-repeat;
 `;

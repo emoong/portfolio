@@ -37,7 +37,7 @@ const Container = styled.div`
   left:0px;
   width: 100vw;
   height: 40px;
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(200,128,200);
   display: flex;
   justify-content: space-between;
   align-items: center;
