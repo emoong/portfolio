@@ -5,11 +5,12 @@ import { DockFileNames } from 'components/type/entity/dock';
 
 export default function Playground({ children }: { children: React.ReactNode }) {
   const [{ }, drop] = useDrop(() => ({
-    accept: DockFileNames.FINDER,
+    accept: Object.values(DockFileNames),
     drop: (item: any, monitor) => {
+      const uid = item.uid;
       const x = monitor.getSourceClientOffset()?.x;
       const y = monitor.getSourceClientOffset()?.y;
-      item.setCoordinates([x, y]);
+      item.moveFile({ uid, x, y });
     }
   }))
 

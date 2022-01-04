@@ -1,7 +1,7 @@
 import React from "react";
 import { DockFileNames } from "./dock";
 
-export type corrdinates = [number, number];
+export type coordinates = number[];
 
 export enum Position {
   LEFT,
@@ -20,4 +20,6 @@ export interface FileWindow {
   name: DockFileNames;
   uid: string;
   component: JSX.Element | null;
+  coordinates: coordinates | null;
+  size: WindowSize;
 }

@@ -1,20 +1,29 @@
 import { DockFileNames } from 'components/type/entity/dock';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { useDrag, useDragLayer, useDrop } from "react-dnd";
+import { useDrag } from "react-dnd";
 import styled from 'styled-components';
 import WindowTopBar from '../molecules/WindowTopBar';
-import { actionCreators } from 'modules';
-import { useEffect, useState } from 'react';
+import { actionCreators, State } from 'modules';
+import { useMemo } from 'react';
+import { coordinates } from 'components/type/entity/window';
 
 export default function Finder({ uid }: { uid: string }) {
-  const [coordinates, setCoordinates] = useState<[number, number]>([200, 200]);
   const dispatch = useDispatch();
-  const { popFile } = bindActionCreators(actionCreators, dispatch);
+  const { popFile, moveFile } = bindActionCreators(actionCreators, dispatch);
+  const { files } = useSelector((state: State) => state.file);
+
+  const thisCoordinates = useMemo(() => {
+    const thisComponent = files.find(file => file.uid === uid);
+    if (thisComponent) {
+      return thisComponent.coordinates;
+    }
+    return [200, 200];
+  }, [files])
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: DockFileNames.FINDER,
-    item: { uid: uid, setCoordinates: setCoordinates },
+    item: { uid: uid, moveFile: moveFile },
     collect: monitor => ({
       isDragging: !!monitor.isDragging(),
     })
@@ -24,7 +33,7 @@ export default function Finder({ uid }: { uid: string }) {
     popFile({ uid })
   }
   return (
-    <Container onClick={selectFile} ref={drag} coordinates={coordinates} >
+    <Container onClick={selectFile} ref={drag} thisCoordinates={thisCoordinates ? thisCoordinates : [200, 200]} >
       <WindowTopBar uid={uid} name={DockFileNames.FINDER} />
       <Body>
         body
@@ -38,8 +47,8 @@ export default function Finder({ uid }: { uid: string }) {
 
 const Container = styled.div`
   position: absolute;
-  top: ${({ coordinates }: { coordinates: [number, number] }) => coordinates[1]}px;
-  left: ${({ coordinates }: { coordinates: [number, number] }) => coordinates[0]}px;
+  top: ${({ thisCoordinates }: { thisCoordinates: coordinates }) => thisCoordinates[1]}px;
+  left: ${({ thisCoordinates }: { thisCoordinates: coordinates }) => thisCoordinates[0]}px;
   border: 1px solid red;
   background-color: red;
 `

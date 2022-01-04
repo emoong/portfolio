@@ -22,7 +22,9 @@ const reducer = (state = initialState, action: Actions): { files: FileWindow[] }
           {
             name: action.payload.name,
             uid: action.payload.uid,
-            component: fileRouter({ name: action.payload.name, uid: action.payload.uid })
+            component: fileRouter({ name: action.payload.name, uid: action.payload.uid }),
+            coordinates: [200, 200],
+            size: WindowSize.NORMAL,
           },
           ...state.files,
         ]
@@ -81,6 +83,20 @@ const reducer = (state = initialState, action: Actions): { files: FileWindow[] }
       return {
         files: changedFiles
       }
+    }
+    case FilesActionType.MOVE_FILE: {
+      const changedFiles = [...state.files].map((file) => {
+        if (file.uid === action.payload.uid) {
+          return {
+            ...file,
+            coordinates: [action.payload.x, action.payload.y]
+          };
+        }
+        return file;
+      })
+      return {
+        files: changedFiles
+      };
     }
     default: {
       return state;
