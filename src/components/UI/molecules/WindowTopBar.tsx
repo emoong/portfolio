@@ -47,7 +47,7 @@ const Container = styled.div`
 
 const ButtonsBar = styled.div`
   display: flex;
-  width: 50px;
+  width: 100px;
   height: 100%;
 `
 

@@ -49,8 +49,8 @@ const Container = styled.div`
   position: absolute;
   top: ${({ thisCoordinates }: { thisCoordinates: coordinates }) => thisCoordinates[1]}px;
   left: ${({ thisCoordinates }: { thisCoordinates: coordinates }) => thisCoordinates[0]}px;
-  border: 1px solid red;
-  background-color: red;
+  border: 1px solid grey;
+  background-color: white;
 `
 
 const Body = styled.div`
