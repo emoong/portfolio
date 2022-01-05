@@ -4,7 +4,6 @@ import Dock from 'components/UI/organisms/Dock';
 import { State } from 'modules';
 import { Fragment, MouseEventHandler } from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
 import Playground from './Playground';
 
 export default function MacDisplay({ onClick }: { onClick: MouseEventHandler }) {
@@ -32,10 +31,3 @@ export default function MacDisplay({ onClick }: { onClick: MouseEventHandler }) 
     </>
   )
 }
-
-const Background = styled.div`
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background-color: cadetblue;
-`
