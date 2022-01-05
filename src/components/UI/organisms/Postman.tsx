@@ -7,6 +7,10 @@ import WindowTopBar from '../molecules/WindowTopBar';
 import { actionCreators, State } from 'modules';
 import { useMemo } from 'react';
 import { coordinates } from 'components/type/entity/window';
+import { windowCoordinates, windowSize } from 'components/utils/window';
+
+// style
+import { WindowContainer, WindowBody } from "components/utils/styles";
 
 export default function Postman({ uid }: { uid: string }) {
   const dispatch = useDispatch();
@@ -14,11 +18,11 @@ export default function Postman({ uid }: { uid: string }) {
   const { files } = useSelector((state: State) => state.file);
 
   const thisCoordinates = useMemo(() => {
-    const thisComponent = files.find(file => file.uid === uid);
-    if (thisComponent) {
-      return thisComponent.coordinates;
-    }
-    return [200, 200];
+    return windowCoordinates(files, uid);
+  }, [files])
+
+  const thisSize = useMemo(() => {
+    return windowSize(files, uid);
   }, [files])
 
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -33,27 +37,14 @@ export default function Postman({ uid }: { uid: string }) {
     popFile({ uid })
   }
   return (
-    <Container onClick={selectFile} ref={drag} thisCoordinates={thisCoordinates ? thisCoordinates : [200, 200]} >
+    <WindowContainer onClick={selectFile} ref={drag} thisCoordinates={thisCoordinates ? thisCoordinates : [200, 200]} thisSize={thisSize}>
       <WindowTopBar uid={uid} name={DockFileNames.POSTMAN} />
-      <Body>
+      <WindowBody thisSize={thisSize}>
         body
         awf
         sage
         awg
-      </Body>
-    </Container>
+      </WindowBody>
+    </WindowContainer>
   )
 }
-
-const Container = styled.div`
-  position: absolute;
-  top: ${({ thisCoordinates }: { thisCoordinates: coordinates }) => thisCoordinates[1]}px;
-  left: ${({ thisCoordinates }: { thisCoordinates: coordinates }) => thisCoordinates[0]}px;
-  border: 1px solid grey;
-  background-color: white;
-`
-
-const Body = styled.div`
-  width: 400px;
-  height: 300px;
-`
