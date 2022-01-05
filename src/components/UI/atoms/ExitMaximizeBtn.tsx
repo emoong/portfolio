@@ -17,14 +17,14 @@ export default function ExitMaximizeBtn({ uid }: { uid: string }) {
 
   return (
     <Container onClick={onExitMaximizeWindow}>
-      <img src={normalize} width={20} height={20} />
+      <img src={normalize} width={18} height={18} />
     </Container>
   )
 }
 
 const Container = styled.div`
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background-color: #33ff33;
   text-align: center;

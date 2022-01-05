@@ -17,14 +17,14 @@ export default function MinimizeBtn({ uid }: { uid: string }) {
 
   return (
     <Container onClick={onMinimizeWindow}>
-      <img src={minus} width={20} height={20} />
+      <img src={minus} width={18} height={18} />
     </Container>
   )
 }
 
 const Container = styled.div`
-width: 20px;
-height: 20px;
+width: 18px;
+height: 18px;
 border-radius: 50%;
 background-color: #eeee33;
 text-align: center;

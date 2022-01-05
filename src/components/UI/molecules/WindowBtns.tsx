@@ -31,6 +31,6 @@ export default function WindowBtns({ uid, name, isMaximized }: { uid: string, na
 
 const Container = styled.div`
   display: flex;
-  width: 100px;
-  height: 100%;
+  width: 72px;
+  justify-content: space-between;
 `

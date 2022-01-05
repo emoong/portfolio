@@ -18,14 +18,14 @@ export default function CloseBtn({ uid, name }: { uid: string, name: DockFileNam
 
   return (
     <Container onClick={onCloseWindow}>
-      <img src={cancle} width={20} height={20} />
+      <img src={cancle} width={18} height={18} />
     </Container>
   )
 }
 
 const Container = styled.div`
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background-color: #ff3333;
   text-align: center;
